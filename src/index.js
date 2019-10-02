@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { SourceMapConsumer } from "source-map";
-import DisplaySeason from "./DisplaySeason";
+import SeasonDisplay from "./SeasonDisplay";
+import Spinner from "./Spinner";
 
 class App extends React.Component {
   state = {
@@ -18,7 +19,7 @@ class App extends React.Component {
     if (this.state.lat && !this.state.errorMessage) {
       return (
         <div>
-          <DisplaySeason lat={this.state.lat} />
+          <SeasonDisplay lat={this.state.lat} />
         </div>
       );
     }
@@ -26,7 +27,11 @@ class App extends React.Component {
       return <div>Error: {this.state.errorMessage}</div>;
     }
 
-    return <div>Loading!</div>;
+    return (
+      <div>
+        <Spinner message="Please accept location request" />
+      </div>
+    );
   }
 }
 
